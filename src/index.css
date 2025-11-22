@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Azios Dark Theme - High-Tech Aesthetic */
+    --background: 220 10% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 10% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 10% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Electric Blue Primary */
+    --primary: 188 99% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Vibrant Green Accent */
+    --secondary: 162 98% 29%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 188 99% 38%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 188 99% 38%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(188 99% 38%), hsl(186 100% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(188 99% 38%), hsl(162 98% 29%));
+    --gradient-hero: linear-gradient(180deg, hsl(220 10% 7%), hsl(220 15% 10%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(188 99% 38% / 0.3);
+    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    html {
+      font-size: 16px; /* Prevent zoom on focus in iOS */
+    }
+    
+    body {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-text-size-adjust: 100%;
+    }
+  }
+}
+
+/* Utility for safe area insets (mobile notches) */
+@layer utilities {
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
