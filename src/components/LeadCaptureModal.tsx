@@ -114,7 +114,7 @@ export const LeadCaptureModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[95vw] sm:max-w-[480px] max-h-[90vh] sm:max-h-[95vh] overflow-y-auto p-4 sm:p-6">
+      <DialogContent className="w-[90vw] max-w-[400px] sm:max-w-[480px] max-h-[85vh] sm:max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
         {isSuccess ? (
           <div className="py-8 sm:py-12 text-center px-2">
             <div className="relative inline-block mb-3 sm:mb-4">
@@ -131,14 +131,14 @@ export const LeadCaptureModal = ({
           </div>
         ) : (
           <>
-            <DialogHeader className="space-y-1 pb-2">
+            <DialogHeader className="space-y-0.5 pb-1">
               <DialogTitle className="text-lg sm:text-xl font-bold leading-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">{title}</DialogTitle>
               <DialogDescription className="text-xs sm:text-sm font-semibold text-foreground/90">
                 {description}
               </DialogDescription>
             </DialogHeader>
 
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-lg p-2 sm:p-2.5 my-2 space-y-1.5">
+            <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-lg p-2 my-1.5 space-y-1">
               <div className="flex items-start gap-2">
                 <Check className="w-3.5 h-3.5 text-green-500 flex-shrink-0 mt-0.5" />
                 <p className="text-xs leading-tight">
@@ -159,7 +159,7 @@ export const LeadCaptureModal = ({
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-2">
+            <form onSubmit={handleSubmit} className="space-y-2">
               <div>
                 <Label htmlFor="modal-name" className="text-xs sm:text-sm font-semibold">Nome Completo *</Label>
                 <Input
@@ -170,7 +170,7 @@ export const LeadCaptureModal = ({
                   placeholder="Seu nome completo"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="mt-1 h-10 sm:h-9 text-sm"
+                  className="mt-1 h-9 text-sm"
                 />
               </div>
 
