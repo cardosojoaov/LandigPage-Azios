@@ -27,8 +27,8 @@ export const PillarsSection = () => {
     <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 overflow-hidden">
       {/* Background com gradiente diagonal moderno */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-background" />
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-primary/10 to-transparent blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-secondary/10 to-transparent blur-3xl" />
+      <div className="absolute top-0 right-0 w-[400px] sm:w-[800px] h-[400px] sm:h-[800px] bg-gradient-radial from-primary/10 to-transparent blur-2xl sm:blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-radial from-secondary/10 to-transparent blur-2xl sm:blur-3xl" />
       
       <div className="relative max-w-5xl mx-auto">
         <motion.div 
@@ -73,8 +73,8 @@ export const PillarsSection = () => {
               viewport={{ once: true, margin: "0px" }}
               transition={{ 
                 duration: shouldReduceMotion ? 0 : 0.4, 
-                delay: shouldReduceMotion ? 0 : index * 0.08,
-                ease: [0.22, 1, 0.36, 1]
+                delay: shouldReduceMotion ? 0 : index * 0.05,
+                ease: "easeOut"
               }}
               className="relative group"
             >

@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { saveLeadLocally, sendEmailNotification } from "@/lib/leadManager";
+import { processLead } from "@/lib/leadManager";
 import { useToast } from "@/hooks/use-toast";
 
 export const ContactFormSection = () => {
@@ -29,16 +29,11 @@ export const ContactFormSection = () => {
         company: formData.company,
         message: formData.message,
         source: 'contact-form' as const,
-        timestamp: new Date().toISOString(),
       };
 
-      // Salvar lead localmente
-      saveLeadLocally(leadData);
+      const success = await processLead(leadData);
 
-      // Enviar por email
-      const emailSent = await sendEmailNotification(leadData);
-
-      if (emailSent) {
+      if (success) {
         toast({
           title: "Mensagem enviada com sucesso!",
           description: "Nossa equipe entrará em contato em até 2 horas úteis.",

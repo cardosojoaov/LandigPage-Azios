@@ -74,6 +74,7 @@ All colors MUST be HSL.
       -webkit-tap-highlight-color: transparent;
       -webkit-touch-callout: none;
       -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
     }
   }
 }

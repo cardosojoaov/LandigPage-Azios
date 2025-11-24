@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CheckCircle2, Check } from "lucide-react";
-import { saveLeadLocally, sendEmailNotification } from "@/lib/leadManager";
+import { processLead } from "@/lib/leadManager";
 import { useToast } from "@/hooks/use-toast";
 
 interface LeadCaptureModalProps {
@@ -79,14 +79,9 @@ export const LeadCaptureModal = ({
         message: formData.message,
         source: source,
         plan: plan,
-        timestamp: new Date().toISOString(),
       };
 
-      // Salvar lead localmente
-      saveLeadLocally(leadData);
-
-      // Enviar por email para comercial@azios.com.br
-      const emailSent = await sendEmailNotification(leadData);
+      const success = await processLead(leadData);
 
       if (onSubmit) {
         onSubmit(formData);
@@ -94,7 +89,7 @@ export const LeadCaptureModal = ({
 
       setIsSuccess(true);
 
-      if (emailSent) {
+      if (success) {
         toast({
           title: "Solicitação enviada com sucesso!",
           description: "Nossa equipe entrará em contato em breve!",
