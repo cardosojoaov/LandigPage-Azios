@@ -99,7 +99,7 @@ export const sendEmailNotification = async (lead: LeadData): Promise<boolean> =>
     formData.append('subject', `🎯 Novo Lead Azios - ${lead.name}`);
     formData.append('from_name', 'Azios AI');
     formData.append('Nome', lead.name);
-    formData.append('email', lead.email);
+    formData.append('Email do Lead', lead.email);
     formData.append('Telefone', lead.phone);
     formData.append('Empresa', lead.company || 'Não informado');
     formData.append('Maior Obstáculo', lead.obstacle || 'Não informado');
@@ -135,7 +135,7 @@ export const sendEmailNotification = async (lead: LeadData): Promise<boolean> =>
  */
 export const processLead = async (
   leadData: Omit<LeadData, 'timestamp'>,
-): Promise<boolean> => {
+): Promise<void> => {
   const lead: LeadData = {
     ...leadData,
     timestamp: new Date().toISOString(),
@@ -145,15 +145,15 @@ export const processLead = async (
   saveLeadLocally(lead);
 
   // Tentar enviar para API
-  await sendLeadToAPI(lead);
+  const apiSuccess = await sendLeadToAPI(lead);
 
-  // Enviar notificação por email (Web3Forms)
-  const emailSuccess = await sendEmailNotification(lead);
+  // Se API funcionou, enviar notificação
+  if (apiSuccess) {
+    await sendEmailNotification(lead);
+  }
 
   // Analytics/Tracking (Google Analytics, Meta Pixel, etc)
   trackLeadConversion(lead);
-
-  return emailSuccess;
 };
 
 /**

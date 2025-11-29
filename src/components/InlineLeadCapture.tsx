@@ -31,7 +31,7 @@ export const InlineLeadCapture = () => {
             <h3 className="text-3xl md:text-4xl font-bold mb-3">
               Receba uma <span className="bg-gradient-primary bg-clip-text text-transparent">Análise Gratuita</span>
             </h3>
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-lg text-white mb-6">
               Descubra quanto você pode aumentar suas vendas com IA em apenas 90 dias
             </p>
 
@@ -44,7 +44,7 @@ export const InlineLeadCapture = () => {
               Quero Minha Análise Gratuita
             </Button>
 
-            <p className="text-xs text-muted-foreground mt-4">
+            <p className="text-xs text-white mt-4">
               ✓ 100% gratuito • ✓ Sem compromisso • ✓ Resposta em 24h
             </p>
           </div>

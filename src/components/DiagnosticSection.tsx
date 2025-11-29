@@ -48,7 +48,7 @@ export const DiagnosticSection = () => {
             Como funciona o{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">Diagnóstico</span>
           </h3>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground">3 passos simples para transformar seu negócio</p>
+          <p className="text-base sm:text-lg md:text-xl text-white">3 passos simples para transformar seu negócio</p>
         </motion.div>
 
         {/* Steps Grid - Enhanced */}
@@ -83,7 +83,7 @@ export const DiagnosticSection = () => {
                         {step.title}
                       </h3>
                     </div>
-                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-3 sm:mb-4">
+                    <p className="text-sm sm:text-base text-white leading-relaxed mb-3 sm:mb-4">
                       {step.description}
                     </p>
                     <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-secondary">

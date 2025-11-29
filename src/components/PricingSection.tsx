@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useShouldAnimate } from "@/hooks/use-should-animate";
 import { useState } from "react";
 import { LeadCaptureModal, LeadFormData } from "./LeadCaptureModal";
 
@@ -57,7 +58,7 @@ const plans = [
 ];
 
 export const PricingSection = () => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldAnimate = useShouldAnimate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("");
 
@@ -78,11 +79,12 @@ export const PricingSection = () => {
       <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-50" />
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div 
-          className="text-center mb-20"
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-20 transform-gpu"
+          initial={shouldAnimate ? { opacity: 0, y: 30 } : { opacity: 1 }}
+          whileInView={shouldAnimate ? { opacity: 1, y: 0 } : {}}
           viewport={{ once: true }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
+          transition={{ duration: shouldAnimate ? 0.4 : 0 }}
+          style={{ willChange: "transform, opacity" }}
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             Escolha o Plano Perfeito para o Seu{" "}
@@ -94,10 +96,10 @@ export const PricingSection = () => {
           {plans.map((plan, index) => (
             <motion.div
               key={index}
-              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldAnimate ? { opacity: 0, y: 30 } : { opacity: 1 }}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : {}}
               viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.3, delay: shouldReduceMotion ? 0 : index * 0.06 }}
+              transition={{ duration: shouldAnimate ? 0.3 : 0, delay: shouldAnimate ? index * 0.06 : 0 }}
             >
               <Card 
                 className={`relative p-8 bg-card border-2 transition-all duration-300 h-full flex flex-col ${
@@ -146,11 +148,12 @@ export const PricingSection = () => {
         </div>
         
         <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center transform-gpu"
+          initial={shouldAnimate ? { opacity: 0, y: 20 } : { opacity: 1 }}
+          whileInView={shouldAnimate ? { opacity: 1, y: 0 } : {}}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: shouldAnimate ? 0.5 : 0 }}
+          style={{ willChange: "transform, opacity" }}
         >
           <Button 
             variant="outline-hero" 

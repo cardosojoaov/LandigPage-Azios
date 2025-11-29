@@ -1,0 +1,6 @@
+@media (max-width: 640px) {
+  .hero-logo-mobile {
+    height: 12rem !important;
+    max-width: 90vw;
+  }
+}

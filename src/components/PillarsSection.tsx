@@ -27,8 +27,8 @@ export const PillarsSection = () => {
     <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 overflow-hidden">
       {/* Background com gradiente diagonal moderno */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-background" />
-      <div className="absolute top-0 right-0 w-[400px] sm:w-[800px] h-[400px] sm:h-[800px] bg-gradient-radial from-primary/10 to-transparent blur-2xl sm:blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-radial from-secondary/10 to-transparent blur-2xl sm:blur-3xl" />
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-primary/10 to-transparent blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-secondary/10 to-transparent blur-3xl" />
       
       <div className="relative max-w-5xl mx-auto">
         <motion.div 
@@ -57,7 +57,7 @@ export const PillarsSection = () => {
             </span>
           </h2>
           
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mt-4 sm:mt-6 leading-relaxed max-w-4xl mx-auto px-2 sm:px-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mt-4 sm:mt-6 leading-relaxed max-w-4xl mx-auto px-2 sm:px-4">
             Você construiu sua empresa para ter liberdade, mas hoje virou refém dela? 
             Se você se identifica com os pontos abaixo, você está pagando o{" "}
             <span className="text-foreground font-bold">"Preço da Desorganização"</span>:
@@ -73,8 +73,8 @@ export const PillarsSection = () => {
               viewport={{ once: true, margin: "0px" }}
               transition={{ 
                 duration: shouldReduceMotion ? 0 : 0.4, 
-                delay: shouldReduceMotion ? 0 : index * 0.05,
-                ease: "easeOut"
+                delay: shouldReduceMotion ? 0 : index * 0.08,
+                ease: [0.22, 1, 0.36, 1]
               }}
               className="relative group"
             >
@@ -88,7 +88,7 @@ export const PillarsSection = () => {
                 <div className="relative flex-shrink-0">
                   <div className="absolute inset-0 bg-muted/50 rounded-full blur-md group-hover:blur-lg transition-all" />
                   <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center group-hover:scale-110 transition-transform border-2 border-border group-hover:border-primary/50">
-                    <X className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-muted-foreground" strokeWidth={3} />
+                    <X className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" strokeWidth={3} />
                   </div>
                 </div>
                 
@@ -96,7 +96,7 @@ export const PillarsSection = () => {
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1.5 sm:mb-2 text-foreground group-hover:text-primary transition-colors">
                     {pain.title}
                   </h3>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed">
                     {pain.description}
                   </p>
                 </div>
@@ -118,7 +118,7 @@ export const PillarsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.3, delay: shouldReduceMotion ? 0 : 0.2 }}
         >
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground italic">
+          <p className="text-base sm:text-lg md:text-xl text-white italic">
             💡 <span className="text-foreground font-semibold">A boa notícia?</span> Existe uma forma de resolver isso de uma vez por todas.
           </p>
         </motion.div>

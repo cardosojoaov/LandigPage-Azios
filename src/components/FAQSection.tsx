@@ -52,7 +52,7 @@ export const FAQSection = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             Perguntas <span className="bg-gradient-primary bg-clip-text text-transparent">Frequentes</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground">
+          <p className="text-base sm:text-lg md:text-xl text-white">
             Tire suas dúvidas antes de começar sua transformação
           </p>
         </motion.div>
@@ -75,7 +75,7 @@ export const FAQSection = () => {
                     {faq.question}
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="text-sm sm:text-base text-muted-foreground pb-4 sm:pb-6 leading-relaxed">
+                <AccordionContent className="text-sm sm:text-base text-white pb-4 sm:pb-6 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -90,7 +90,7 @@ export const FAQSection = () => {
           viewport={{ once: true }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.3, delay: shouldReduceMotion ? 0 : 0.15 }}
         >
-          <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6">
+          <p className="text-base sm:text-lg text-white mb-4 sm:mb-6">
             Ainda tem dúvidas?
           </p>
           <a 

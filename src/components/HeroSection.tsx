@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { useShouldAnimate } from "@/hooks/use-should-animate";
 import heroVisual from "@/assets/hero.png";
 import { useState } from "react";
 import { LeadCaptureModal, LeadFormData } from "./LeadCaptureModal";
 
 export const HeroSection = () => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldAnimate = useShouldAnimate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLeadSubmit = (data: LeadFormData) => {
@@ -17,11 +18,13 @@ export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Logo no topo */}
-      <div className="relative z-20 w-full flex justify-center pt-6 sm:pt-8">
+      <div className="relative z-20 w-full flex justify-center pt-1 sm:pt-8">
+        {/* Importa CSS customizado para mobile */}
+        <style>{`@import url('/src/hero-mobile.css');`}</style>
         <img 
           src="/azios-logo.png" 
           alt="Azios Logo" 
-          className="h-36 sm:h-48 md:h-60 lg:h-72 xl:h-80 w-auto object-contain drop-shadow-2xl"
+          className="h-56 sm:h-44 md:h-56 lg:h-64 xl:h-72 w-auto object-contain drop-shadow-2xl hero-logo-mobile"
         />
       </div>
 
@@ -33,13 +36,13 @@ export const HeroSection = () => {
       
       {/* Efeitos de brilho radial */}
       <motion.div 
-        className="absolute top-1/3 left-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/20 rounded-full blur-[60px] sm:blur-[120px] will-change-transform" 
-        animate={shouldReduceMotion ? {} : { opacity: [0.3, 0.6, 0.3] }}
+        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] hidden md:block" 
+        animate={shouldAnimate ? { opacity: [0.3, 0.6, 0.3] } : {}}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute bottom-1/3 right-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-secondary/15 rounded-full blur-[60px] sm:blur-[120px] will-change-transform" 
-        animate={shouldReduceMotion ? {} : { opacity: [0.2, 0.5, 0.2] }}
+        className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-secondary/15 rounded-full blur-[120px] hidden md:block" 
+        animate={shouldAnimate ? { opacity: [0.2, 0.5, 0.2] } : {}}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
       
@@ -48,17 +51,18 @@ export const HeroSection = () => {
       
       {/* Content */}
       <motion.div 
-        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex-1 flex flex-col justify-start md:justify-center pt-12 pb-16 md:py-20"
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut" }}
+        className="relative z-20 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 text-center flex-1 flex flex-col justify-center py-16 sm:py-20 -mt-24 sm:-mt-32 transform-gpu"
+        initial={shouldAnimate ? { opacity: 0, y: 30 } : { opacity: 1 }}
+        animate={shouldAnimate ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: shouldAnimate ? 0.8 : 0, ease: "easeOut" }}
+        style={{ willChange: "transform, opacity" }}
       >
         {/* Manchete (H1) - Foco na dor */}
         <motion.h1 
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight px-2 sm:px-4 will-change-transform"
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.2 }}
+          className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-12 sm:mb-6 lg:mb-8 leading-tight px-2 sm:px-4"
+          initial={shouldAnimate ? { opacity: 0, y: 20 } : { opacity: 1 }}
+          animate={shouldAnimate ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: shouldAnimate ? 0.8 : 0, delay: shouldAnimate ? 0.2 : 0 }}
         >
           <span className="text-foreground">
             Descubra onde o trabalho manual está{" "}
@@ -71,10 +75,10 @@ export const HeroSection = () => {
         
         {/* Subtítulo (H2) - A solução */}
         <motion.h2 
-          className="text-base sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-4xl mx-auto mb-8 sm:mb-10 lg:mb-12 leading-relaxed px-2 sm:px-4 font-light"
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.3 }}
+          className="text-base sm:text-xl md:text-2xl lg:text-3xl text-white max-w-4xl mx-auto mb-8 sm:mb-10 lg:mb-12 leading-relaxed px-2 sm:px-4 font-light"
+          initial={shouldAnimate ? { opacity: 0, y: 20 } : { opacity: 1 }}
+          animate={shouldAnimate ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: shouldAnimate ? 0.8 : 0, delay: shouldAnimate ? 0.3 : 0 }}
         >
           Solicite uma <span className="text-foreground font-semibold">Sessão Estratégica de IA gratuita</span> com a Azios e receba um plano prático para substituir rotinas manuais por Inteligência Artificial.
         </motion.h2>
@@ -82,14 +86,14 @@ export const HeroSection = () => {
         {/* CTA Principal */}
         <motion.div 
           className="flex justify-center px-2 sm:px-4"
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.5 }}
+          initial={shouldAnimate ? { opacity: 0, y: 20 } : { opacity: 1 }}
+          animate={shouldAnimate ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: shouldAnimate ? 0.8 : 0, delay: shouldAnimate ? 0.5 : 0 }}
         >
           <Button 
             variant="hero" 
             size="xl" 
-            className="group w-auto max-w-full px-4 sm:px-8 md:px-12 touch-manipulation min-h-[48px] sm:min-h-[64px] text-sm sm:text-lg md:text-xl font-bold whitespace-normal h-auto py-3 sm:py-2"
+            className="group w-full sm:w-auto px-6 sm:px-8 md:px-12 touch-manipulation min-h-[56px] sm:min-h-[64px] text-base sm:text-lg md:text-xl font-bold"
             onClick={() => setIsModalOpen(true)}
           >
             QUERO PARAR DE PERDER DINHEIRO
@@ -105,16 +109,6 @@ export const HeroSection = () => {
         source="hero"
         onSubmit={handleLeadSubmit}
       />
-
-      {/* Scroll Indicator - Mobile Only */}
-      <motion.div 
-        className="absolute bottom-32 left-[47%] -translate-x-1/2 md:hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, delay: 1, ease: "easeInOut" }}
-      >
-        <ChevronDown className="w-8 h-8 text-muted-foreground/60" />
-      </motion.div>
     </section>
   );
 };

@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { processLead } from "@/lib/leadManager";
+import { saveLeadLocally, sendEmailNotification } from "@/lib/leadManager";
 import { useToast } from "@/hooks/use-toast";
 
 export const ContactFormSection = () => {
@@ -29,11 +29,16 @@ export const ContactFormSection = () => {
         company: formData.company,
         message: formData.message,
         source: 'contact-form' as const,
+        timestamp: new Date().toISOString(),
       };
 
-      const success = await processLead(leadData);
+      // Salvar lead localmente
+      saveLeadLocally(leadData);
 
-      if (success) {
+      // Enviar por email
+      const emailSent = await sendEmailNotification(leadData);
+
+      if (emailSent) {
         toast({
           title: "Mensagem enviada com sucesso!",
           description: "Nossa equipe entrará em contato em até 2 horas úteis.",
@@ -75,7 +80,7 @@ export const ContactFormSection = () => {
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             Fale com <span className="bg-gradient-primary bg-clip-text text-transparent">Nossos Especialistas</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-white">
             Receba uma análise personalizada e veja como a IA pode transformar suas vendas
           </p>
         </motion.div>
@@ -184,7 +189,7 @@ export const ContactFormSection = () => {
                   required
                   className="mt-1 w-4 h-4 text-primary border-border rounded focus:ring-2 focus:ring-primary touch-manipulation"
                 />
-                <label htmlFor="privacy" className="text-sm text-muted-foreground">
+                <label htmlFor="privacy" className="text-sm text-white">
                   Aceito receber comunicações da Azios e estou de acordo com a{" "}
                   <a href="#" className="text-primary hover:underline">Política de Privacidade</a>
                 </label>
@@ -200,7 +205,7 @@ export const ContactFormSection = () => {
                 {isSubmitting ? "Enviando..." : "Solicitar Contato"}
               </Button>
               
-              <p className="text-center text-sm text-muted-foreground">
+              <p className="text-center text-sm text-white">
                 ✓ Resposta em até 2 horas úteis • ✓ Sem compromisso
               </p>
             </form>

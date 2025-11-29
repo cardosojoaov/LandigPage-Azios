@@ -35,7 +35,7 @@ export const Footer = () => {
             <div className="flex items-center justify-center gap-3 mb-3 sm:mb-4">
               <img src={aziosLogo} alt="Azios" className="h-16 sm:h-20 md:h-24" />
             </div>
-            <p className="text-sm sm:text-base text-muted-foreground italic font-medium">
+            <p className="text-sm sm:text-base text-white italic font-medium">
               "Automatizando o braçal para você focar no essencial."
             </p>
           </div>
@@ -43,7 +43,7 @@ export const Footer = () => {
         
         {/* Copyright */}
         <div className="pt-6 sm:pt-8 border-t border-border text-center">
-          <p className="text-xs sm:text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-white">
             © 2025 Azios Group. Todos os direitos reservados.
           </p>
         </div>
