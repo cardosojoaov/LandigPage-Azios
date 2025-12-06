@@ -7,6 +7,7 @@ export interface LeadData {
   phone: string;
   company?: string;
   obstacle?: string;
+  optIn?: boolean;
   source: 'hero' | 'inline' | 'pricing' | 'exit-intent' | 'sticky-cta' | 'contact-form';
   plan?: string;
   message?: string;
@@ -98,12 +99,14 @@ export const sendEmailNotification = async (lead: LeadData): Promise<boolean> =>
     formData.append('access_key', accessKey);
     formData.append('subject', `🎯 Novo Lead Azios - ${lead.name}`);
     formData.append('from_name', 'Azios AI');
-    formData.append('Nome', lead.name);
-    formData.append('Email do Lead', lead.email);
-    formData.append('Telefone', lead.phone);
+    // Campos ajustados para Web3Forms / integração
+    formData.append('Primeiro Nome', lead.name);
+    formData.append('Email', lead.email);
+    formData.append('WhatsApp', lead.phone);
     formData.append('Empresa', lead.company || 'Não informado');
     formData.append('Maior Obstáculo', lead.obstacle || 'Não informado');
     formData.append('Mensagem', lead.message || 'Não informado');
+    formData.append('Autorizo WhatsApp', lead.optIn ? 'Sim' : 'Não');
     formData.append('Origem', 'azios.com.br');
     formData.append('Data/Hora', new Date(lead.timestamp).toLocaleString('pt-BR'));
 

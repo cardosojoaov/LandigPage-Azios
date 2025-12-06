@@ -20,6 +20,7 @@ import {
 import { CheckCircle2, Check } from "lucide-react";
 import { saveLeadLocally, sendEmailNotification } from "@/lib/leadManager";
 import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface LeadCaptureModalProps {
   open: boolean;
@@ -40,6 +41,7 @@ export interface LeadFormData {
   company?: string;
   obstacle?: string;
   message?: string;
+  optIn?: boolean;
 }
 
 export const LeadCaptureModal = ({
@@ -61,6 +63,7 @@ export const LeadCaptureModal = ({
     company: "",
     obstacle: "",
     message: "",
+    optIn: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -76,6 +79,7 @@ export const LeadCaptureModal = ({
         phone: formData.phone,
         company: formData.company,
         obstacle: formData.obstacle,
+        optIn: formData.optIn,
         message: formData.message,
         source: source,
         plan: plan,
@@ -166,13 +170,13 @@ export const LeadCaptureModal = ({
 
             <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-2">
               <div>
-                <Label htmlFor="modal-name" className="text-xs sm:text-sm font-semibold">Nome Completo *</Label>
+                <Label htmlFor="modal-name" className="text-xs sm:text-sm font-semibold">Primeiro Nome *</Label>
                 <Input
                   id="modal-name"
                   type="text"
                   required
-                  autoComplete="name"
-                  placeholder="Seu nome completo"
+                  autoComplete="given-name"
+                  placeholder="Seu primeiro nome"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="mt-1 h-10 sm:h-9 text-sm"
@@ -180,7 +184,7 @@ export const LeadCaptureModal = ({
               </div>
 
               <div>
-                <Label htmlFor="modal-email" className="text-xs font-semibold">Email *</Label>
+                <Label htmlFor="modal-email" className="text-xs font-semibold">Email * <span className="font-normal">[para convite Teams]</span></Label>
                 <Input
                   id="modal-email"
                   type="email"
@@ -202,9 +206,25 @@ export const LeadCaptureModal = ({
                   required
                   autoComplete="tel"
                   inputMode="tel"
-                  placeholder="(11) 99999-9999"
+                  placeholder="(XX) XXXXX-XXXX"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) => {
+                    const raw = e.target.value || '';
+                    const digits = raw.replace(/\D/g, '');
+                    let formatted = digits;
+                    if (digits.length === 0) {
+                      formatted = '';
+                    } else if (digits.length <= 2) {
+                      formatted = `(${digits}`;
+                    } else if (digits.length <= 6) {
+                      formatted = `(${digits.slice(0,2)}) ${digits.slice(2)}`;
+                    } else if (digits.length <= 10) {
+                      formatted = `(${digits.slice(0,2)}) ${digits.slice(2,6)}-${digits.slice(6)}`;
+                    } else {
+                      formatted = `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7,11)}`;
+                    }
+                    setFormData({ ...formData, phone: formatted });
+                  }}
                   className="mt-1 h-9 text-sm"
                 />
               </div>
@@ -252,6 +272,18 @@ export const LeadCaptureModal = ({
                   className="mt-1 text-sm min-h-[60px] resize-none"
                   rows={2}
                 />
+              </div>
+
+              <div className="flex items-start gap-2">
+                <Checkbox
+                  id="modal-optin"
+                  required
+                  checked={!!formData.optIn}
+                  onCheckedChange={(checked) => setFormData({ ...formData, optIn: !!checked })}
+                />
+                <Label htmlFor="modal-optin" className="text-xs">
+                  Autorizo a Azios a entrar em contato via WhatsApp *
+                </Label>
               </div>
 
               <Button
