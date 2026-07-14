@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRobot, faCheckDouble, faMicrophone, faComments, faBolt, faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 
 export const WhatsAppTriagemSection = () => {
   const container = {
@@ -14,12 +16,12 @@ export const WhatsAppTriagemSection = () => {
 
   const bubbleLeft = {
     hidden: { opacity: 0, x: -20, scale: 0.9 },
-    show: { opacity: 1, x: 0, scale: 1, transition: { type: "spring", stiffness: 120, damping: 14 } }
+    show: { opacity: 1, x: 0, scale: 1, transition: { type: "spring" as const, stiffness: 120, damping: 14 } }
   };
 
   const bubbleRight = {
     hidden: { opacity: 0, x: 20, scale: 0.9 },
-    show: { opacity: 1, x: 0, scale: 1, transition: { type: "spring", stiffness: 120, damping: 14 } }
+    show: { opacity: 1, x: 0, scale: 1, transition: { type: "spring" as const, stiffness: 120, damping: 14 } }
   };
 
   return (
@@ -35,14 +37,14 @@ export const WhatsAppTriagemSection = () => {
           className="relative flex justify-center lg:justify-start"
         >
           {/* Half Phone Mockup */}
-          <div className="w-[320px] md:w-[350px] h-[500px] bg-slate-950 rounded-t-[40px] border-t-[8px] border-x-[8px] border-slate-800 shadow-2xl relative overflow-hidden flex flex-col translate-y-12 lg:translate-y-0">
+          <div className="w-full max-w-[320px] md:max-w-[350px] h-[500px] bg-slate-950 rounded-t-[40px] border-t-[8px] border-x-[8px] border-slate-800 shadow-2xl relative overflow-hidden flex flex-col translate-y-12 lg:translate-y-0">
             {/* Phone Notch/Speaker */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-[16px] z-20"></div>
 
             {/* WhatsApp Header */}
             <div className="bg-slate-800/90 backdrop-blur-md pt-10 pb-3 px-4 flex items-center gap-3 z-10 border-b border-white/5">
               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center relative shrink-0">
-                <span className="material-symbols-outlined text-primary text-xl">smart_toy</span>
+                <FontAwesomeIcon icon={faRobot} className="text-primary text-xl" />
                 <div className="w-3 h-3 bg-green-500 rounded-full absolute bottom-0 right-0 border-2 border-slate-800"></div>
               </div>
               <div>
@@ -65,7 +67,7 @@ export const WhatsAppTriagemSection = () => {
                   <div className="bg-[#005C4B] text-[#E9EDEF] p-3 rounded-2xl rounded-tr-sm text-[13px] shadow-sm leading-relaxed">
                     Olá! Vi a vaga para Front-end no Site e gostaria de me candidatar.
                     <div className="text-[10px] text-[#8696A0] text-right mt-1 flex justify-end items-center gap-1">
-                      10:42 <span className="material-symbols-outlined text-[14px] text-[#53BDEB]">done_all</span>
+                      10:42 <FontAwesomeIcon icon={faCheckDouble} className="text-[14px] text-[#53BDEB]" />
                     </div>
                   </div>
                 </motion.div>
@@ -95,7 +97,7 @@ export const WhatsAppTriagemSection = () => {
                 <span className="text-[#8696A0] text-sm">Mensagem</span>
               </div>
               <div className="w-10 h-10 rounded-full bg-[#00A884] flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[#111B21] text-xl">mic</span>
+                <FontAwesomeIcon icon={faMicrophone} className="text-[#111B21] text-xl" />
               </div>
             </div>
 
@@ -127,7 +129,7 @@ export const WhatsAppTriagemSection = () => {
           <ul className="space-y-5 mb-10">
             <li className="flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-[#00A884]/10 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[#00A884]">forum</span>
+                <FontAwesomeIcon icon={faComments} className="text-[#00A884]" />
               </div>
               <div>
                 <h5 className="text-white font-semibold mb-1">100% via WhatsApp</h5>
@@ -136,7 +138,7 @@ export const WhatsAppTriagemSection = () => {
             </li>
             <li className="flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-[#00A884]/10 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[#00A884]">bolt</span>
+                <FontAwesomeIcon icon={faBolt} className="text-[#00A884]" />
               </div>
               <div>
                 <h5 className="text-white font-semibold mb-1">Respostas imediatas</h5>
@@ -145,7 +147,7 @@ export const WhatsAppTriagemSection = () => {
             </li>
             <li className="flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-[#00A884]/10 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[#00A884]">trending_up</span>
+                <FontAwesomeIcon icon={faArrowTrendUp} className="text-[#00A884]" />
               </div>
               <div>
                 <h5 className="text-white font-semibold mb-1">Zero atrito</h5>

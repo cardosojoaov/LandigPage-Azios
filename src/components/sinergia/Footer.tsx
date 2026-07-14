@@ -1,10 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCube } from "@fortawesome/free-solid-svg-icons";
+
 export const Footer = () => {
   return (
     <footer className="border-t border-white/10 py-16 bg-white/5 backdrop-blur-xl">
       <div className="max-w-container-width mx-auto px-4 md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
         <div>
           <div className="font-headline-md text-headline-md font-bold text-white mb-6 flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: '"FILL" 1' }}>hive</span>
+            <FontAwesomeIcon icon={faCube} className="text-primary text-xl" />
             Azios
           </div>
           <p className="font-body-sm text-slate-400 mb-6 max-w-xs">A plataforma definitiva para líderes de RH operacionais.</p>

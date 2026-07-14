@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faSearch, faMapMarkerAlt, faArrowRight, faBrain } from "@fortawesome/free-solid-svg-icons";
 
 export const HuntingSection = () => {
   const container = {
@@ -14,7 +16,7 @@ export const HuntingSection = () => {
 
   const card = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100 } }
   };
 
   return (
@@ -42,19 +44,19 @@ export const HuntingSection = () => {
           <ul className="space-y-4 mb-10">
             <li className="flex items-center gap-3">
               <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary text-sm font-bold">check</span>
+                <FontAwesomeIcon icon={faCheck} className="text-primary text-sm font-bold" />
               </div>
               <span className="text-slate-300 font-medium">Busca paramétrica avançada</span>
             </li>
             <li className="flex items-center gap-3">
               <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary text-sm font-bold">check</span>
+                <FontAwesomeIcon icon={faCheck} className="text-primary text-sm font-bold" />
               </div>
               <span className="text-slate-300 font-medium">Abordagem ativa e humanizada</span>
             </li>
             <li className="flex items-center gap-3">
               <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary text-sm font-bold">check</span>
+                <FontAwesomeIcon icon={faCheck} className="text-primary text-sm font-bold" />
               </div>
               <span className="text-slate-300 font-medium">Ranking imediato por IA (Fit Cultural & Técnico)</span>
             </li>
@@ -81,16 +83,16 @@ export const HuntingSection = () => {
             {/* Search Bar Mockup */}
             <div className="bg-white/5 border border-white/10 p-2 rounded-xl flex flex-col md:flex-row gap-2 mb-8 relative z-10 shadow-lg">
               <div className="flex-1 flex items-center gap-3 px-4 py-2 bg-slate-900/50 rounded-lg">
-                <span className="material-symbols-outlined text-slate-400 text-lg">search</span>
+                <FontAwesomeIcon icon={faSearch} className="text-slate-400 text-lg" />
                 <span className="text-white text-sm font-medium">Desenvolvedor Front-end</span>
               </div>
               <div className="flex-1 flex items-center gap-3 px-4 py-2 bg-slate-900/50 rounded-lg border-l border-white/5 md:border-l-0">
-                <span className="material-symbols-outlined text-slate-400 text-lg">location_on</span>
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="text-slate-400 text-lg" />
                 <span className="text-white text-sm font-medium">São Paulo, SP</span>
               </div>
               <button className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-medium transition-colors text-sm flex items-center justify-center gap-2">
                 <span>Buscar</span>
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                <FontAwesomeIcon icon={faArrowRight} className="text-sm" />
               </button>
             </div>
 
@@ -124,7 +126,7 @@ export const HuntingSection = () => {
                   </div>
                   <div className="text-right">
                     <div className="inline-flex items-center justify-center px-2 py-1 bg-[#10B981]/10 border border-[#10B981]/20 rounded-md text-[#10B981] text-xs font-bold gap-1">
-                      <span className="material-symbols-outlined text-[12px]">neurology</span>
+                      <FontAwesomeIcon icon={faBrain} className="text-[12px]" />
                       Match {candidate.match}%
                     </div>
                   </div>

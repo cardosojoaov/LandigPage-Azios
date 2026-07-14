@@ -80,6 +80,32 @@ All colors MUST be HSL.
       -webkit-text-size-adjust: 100%;
     }
   }
+
+  /* Fix fixed navbar overlap */
+  section[id] {
+    scroll-margin-top: 100px;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+  .heading-hero {
+    @apply font-display-lg font-extrabold tracking-tight text-4xl md:text-[64px] leading-tight md:leading-[72px] text-white;
+  }
+  .heading-section {
+    @apply font-display-lg tracking-tight text-headline-lg md:text-display-lg text-white font-extrabold;
+  }
+  .heading-card {
+    @apply font-headline-md text-headline-md text-white font-bold;
+  }
+  .body-text {
+    @apply font-body-md text-body-md text-slate-400 font-light;
+  }
+  .body-text-lg {
+    @apply font-body-lg text-body-lg text-slate-400 font-light;
+  }
 }
 
 /* Utility for safe area insets (mobile notches) */
@@ -88,9 +114,6 @@ All colors MUST be HSL.
     padding-bottom: env(safe-area-inset-bottom);
   }
   
-  .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
   .bento-shadow {
       box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.04);
   }

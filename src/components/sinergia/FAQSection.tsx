@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 const faqs = [
   {
     question: "A Azios se integra com o meu ERP atual?",
@@ -68,9 +68,9 @@ export const FAQSection = () => {
                 <motion.div
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="flex-shrink-0 text-primary"
+                  className="flex-shrink-0 text-primary flex items-center justify-center"
                 >
-                  <ChevronDown className="w-5 h-5" />
+                  <FontAwesomeIcon icon={faChevronDown} className="w-5 h-5" />
                 </motion.div>
               </button>
               

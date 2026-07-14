@@ -1,5 +1,7 @@
 import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAward } from "@fortawesome/free-solid-svg-icons";
 
 const AnimatedNumber = ({ value, duration = 2 }: { value: number, duration?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -19,7 +21,7 @@ const AnimatedNumber = ({ value, duration = 2 }: { value: number, duration?: num
 
 export const ProblemSolutionSection = () => {
   return (
-    <section id="solucao" className="max-w-container-width mx-auto px-4 md:px-margin-desktop py-32 overflow-hidden">
+    <section id="solucao" className="max-w-container-width mx-auto px-5 md:px-margin-desktop py-32 overflow-hidden">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -132,10 +134,10 @@ export const ProblemSolutionSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.5, duration: 0.5 }}
-        className="mt-16 max-w-fit mx-auto bg-[#03060b] border border-white/10 px-8 py-4 rounded-full shadow-2xl flex items-center justify-center gap-4 whitespace-nowrap"
+        className="mt-16 mx-auto bg-[#03060b] border border-white/10 px-6 md:px-8 py-4 rounded-3xl md:rounded-full shadow-2xl flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left w-fit max-w-full"
       >
         <div className="w-10 h-10 rounded-full overflow-hidden bg-primary/10 border border-primary/20 flex items-center justify-center">
-          <span className="material-symbols-outlined text-primary text-sm" style={{ fontVariationSettings: '"FILL" 1' }}>workspace_premium</span>
+          <FontAwesomeIcon icon={faAward} className="text-primary text-sm" />
         </div>
         <p className="font-label-md text-slate-300 text-sm md:text-base font-medium">
           Aprovado pelos maiores líderes de RH do país.
